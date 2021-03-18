@@ -43,6 +43,8 @@ RCT_REMAP_METHOD(register,
                  grantTypes: (NSArray *) grantTypes
                  subjectType: (NSString *) subjectType
                  tokenEndpointAuthMethod: (NSString *) tokenEndpointAuthMethod
+                 jwksUrl: (NSString *) jwksUrl
+                 jwks: (NSDictionary *_Nullable) jwks
                  additionalParameters: (NSDictionary *_Nullable) additionalParameters
                  serviceConfiguration: (NSDictionary *_Nullable) serviceConfiguration
                  additionalHeaders: (NSDictionary *_Nullable) additionalHeaders

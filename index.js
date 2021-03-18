@@ -107,6 +107,8 @@ export const register = ({
   grantTypes,
   subjectType,
   tokenEndpointAuthMethod,
+  jwksUrl,
+  jwks,
   additionalParameters,
   serviceConfiguration,
   dangerouslyAllowInsecureHttpRequests = false,
@@ -139,6 +141,18 @@ export const register = ({
     tokenEndpointAuthMethod == null || typeof tokenEndpointAuthMethod === 'string',
     'Config error: if provided, tokenEndpointAuthMethod must be a string'
   );
+  invariant(
+    jwksUrl == null || typeof jwksUrl === 'string',
+    'Config error: if provided, jwksUrl must be a string'
+  );
+  invariant(
+    jwks == null || typeof jwks === 'object',
+    'Config error: if provided, jwks must be an object'
+  );
+  invariant(
+    jwksUrl == null || jwks == null,
+    'Config error: both jwks and jwksUrl cannot be provided'
+  );
 
   const nativeMethodArguments = [
     issuer,
@@ -147,6 +161,8 @@ export const register = ({
     grantTypes,
     subjectType,
     tokenEndpointAuthMethod,
+    jwksUrl,
+    jwks,
     additionalParameters,
     serviceConfiguration,
   ];

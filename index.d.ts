@@ -31,6 +31,10 @@ interface BuiltInRegistrationParameters {
   tos_uri?: string;
 }
 
+interface JWKS {
+  keys: Record<string, any>[];
+}
+
 export type RegistrationConfiguration = BaseConfiguration & {
   redirectUrls: string[];
   responseTypes?: string[];
@@ -41,7 +45,16 @@ export type RegistrationConfiguration = BaseConfiguration & {
   dangerouslyAllowInsecureHttpRequests?: boolean;
   customHeaders?: CustomHeaders;
   additionalHeaders?: AdditionalHeaders;
-};
+} & (
+    | {
+        jwksUrl?: string;
+        jwks: undefined;
+      }
+    | {
+        jwksUrl: undefined;
+        jwks?: JWKS;
+      }
+  );
 
 export interface RegistrationResponse {
   clientId: string;

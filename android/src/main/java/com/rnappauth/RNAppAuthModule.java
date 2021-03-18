@@ -150,6 +150,8 @@ public class RNAppAuthModule extends ReactContextBaseJavaModule implements Activ
         final ReadableArray grantTypes,
         final String subjectType,
         final String tokenEndpointAuthMethod,
+        final String jwksUrl,
+        final ReadableMap jwks,
         final ReadableMap additionalParameters,
         final ReadableMap serviceConfiguration,
         final boolean dangerouslyAllowInsecureHttpRequests,
@@ -173,6 +175,8 @@ public class RNAppAuthModule extends ReactContextBaseJavaModule implements Activ
                         grantTypes,
                         subjectType,
                         tokenEndpointAuthMethod,
+                        jwksUrl,
+                        jwks,
                         additionalParametersMap,
                         promise
                 );
@@ -202,6 +206,8 @@ public class RNAppAuthModule extends ReactContextBaseJavaModule implements Activ
                                     grantTypes,
                                     subjectType,
                                     tokenEndpointAuthMethod,
+                                    jwksUrl,
+                                    jwks,
                                     additionalParametersMap,
                                     promise
                             );
@@ -475,6 +481,8 @@ public class RNAppAuthModule extends ReactContextBaseJavaModule implements Activ
         final ReadableArray grantTypes,
         final String subjectType,
         final String tokenEndpointAuthMethod,
+        final String jwksUrl,
+        final ReadableMap jwks,
         final Map<String, String> additionalParametersMap,
         final Promise promise
     ) {
@@ -503,6 +511,14 @@ public class RNAppAuthModule extends ReactContextBaseJavaModule implements Activ
 
         if (tokenEndpointAuthMethod != null) {
             registrationRequestBuilder.setTokenEndpointAuthenticationMethod(tokenEndpointAuthMethod);
+        }
+
+        if (jwksUrl != null) {
+            registrationRequestBuilder.setJwksUri(Uri.parse(jwksUrl));
+        }
+
+        if (jwks != null) {
+            registrationRequestBuilder.setJwks(MapUtil.convertMapToJson(jwks));
         }
         
         RegistrationRequest registrationRequest = registrationRequestBuilder.build();

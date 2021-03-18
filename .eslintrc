@@ -29,3 +29,5 @@ rules:
     - smart
   max-statements:
     - off
+  complexity:
+    - off

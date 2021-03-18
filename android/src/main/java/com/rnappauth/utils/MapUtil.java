@@ -62,6 +62,10 @@ public class MapUtil {
         return additionalParametersMap;
     }
 
+    public static JSONObject convertMapToJson(ReadableMap map) {
+        return new JSONObject(map.toHashMap());
+    }
+
     private static WritableMap convertJsonToMap(JSONObject jsonObject) throws JSONException {
         WritableMap map = new WritableNativeMap();
 
